@@ -1,6 +1,7 @@
 import time
 import json
 import requests
+from trademanager import buybtc, sellbtc
 
 def getPrice():
 	data=requests.get('https://api.coinbase.com/v2/prices/spot?currency=EUR')
@@ -37,9 +38,9 @@ def main():
 			suhde = newPrice2 / startingPrice
 			if suhde > 1 + TRIGGER or suhde < 1 - TRIGGER:
 				if suhde < 1:
-					print "OSTO!"
+					buybtc(newPrice2)
 				if suhde > 1:
-					print "MYYNTI"
+					sellbtc(newPrice2)
 				priceChange = 0
 				startingPrice = newPrice2
 			else:
