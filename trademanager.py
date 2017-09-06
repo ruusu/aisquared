@@ -26,7 +26,7 @@ def buybtc(price):
 		print "Not enough money to make a buy."
 
 def sellbtc(price):
-	if btcwaller.cryptobalance > 0:
+	if btcwallet.cryptobalance > 0:
 		amount = btcwallet.cryptobalance * price
 		btcwallet.eurbalance += amount
 		print "Sold", btcwallet.cryptobalance, "BTC for", amount, "EUR."
