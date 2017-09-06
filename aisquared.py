@@ -28,17 +28,17 @@ def main():
 		file = open("price.txt", "r")
 		priceStr = file.readline()
 		startingPrice = float(priceStr)
-	print "Starting price is:", startingPrice
+	print "Starting price is:", startingPrice, "eur."
 	TRIGGER = 0.005
 	loop = 1
 	priceChange = 0
 	kierros = 0
 	while loop == 1:
 		if kierros == 1:
-			print "Price change since last trade:", priceChange
+			print "Price change since last trade:", priceChange, "eur."
 		time.sleep(30)
 		newPrice = getPrice()
-		print "Current BTC price is:", newPrice
+		print "Current BTC price is:", newPrice, "eur."
 		if kierros == 0:
 			priceChange = priceChange + newPrice - startingPrice
 			kierros = 1
@@ -46,7 +46,7 @@ def main():
 			priceChange = priceChange + newPrice - newPrice2
 		time.sleep(30)
 		newPrice2 = getPrice()
-		print "Current BTC price is:", newPrice2
+		print "Current BTC price is:", newPrice2, "eur."
 		priceChange2 = newPrice2 - newPrice
 		
 		if (priceChange > 0 and priceChange2 > 0) or (priceChange < 0 and priceChange2 <0):
