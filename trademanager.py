@@ -1,15 +1,12 @@
 import datetime
 
 class portfolio:
-	def __init__(self, cryptobalance, eurbalance):
+	def __init__(self, cryptobalance, eurbalance, totalbalance):
 		self.cryptobalance = cryptobalance
 		self.eurbalance = eurbalance
+		self.totalbalance = totalbalance
 
-btcwallet = portfolio(1.0, 4000.0)
-
-def totalvalue(price):
-	value = price * btcwallet.cryptobalance + btcwallet.eurbalance
-	return price
+btcwallet = portfolio(1.0, 4000.0, 0)
 
 def buybtc(price):
 	if btcwallet.eurbalance > 0:
@@ -22,9 +19,9 @@ def buybtc(price):
 		print "Current portfolio status:"
 		print "BTC:", btcwallet.cryptobalance
 		print "EUR:", btcwallet.eurbalance
-		value = totalvalue(price)
-		valuestr = str(value)
-		print "Total BTC portfolio value:", value, "eur."
+		btcwallet.totalbalance = price * btcwallet.cryptobalance + btcwallet.eurbalance
+		valuestr = str(btcwallet.totalbalance)
+		print "Total BTC portfolio value:", btcwallet.totalbalance, "eur."
 		file = open("trades.txt", "a")
 		file.write(datetime.datetime.now().ctime())
 		file.write("|B|%s|%s|%s.\n" % (amountstr, euramountstr, valuestr))
@@ -43,9 +40,9 @@ def sellbtc(price):
 		print "Current portfolio status:"
 		print "BTC:", btcwallet.cryptobalance
 		print "EUR:", btcwallet.eurbalance
-		value = totalvalue(price)
-		valuestr = str(value)
-		print "Total BTC portfolio value:", value, "eur."
+		btcwallet.totalbalance = price * btcwallet.cryptobalance + btcwallet.eurbalance
+		valuestr = str(btcwallet.totalbalance)
+		print "Total BTC portfolio value:", btcwallet.totalbalance, "eur."
 		file = open("trades.txt", "a")
 		file.write(datetime.datetime.now().ctime())
 		file.write("|S|%s|%s|%s\n" % (btcamountstr, amountstr, valuestr))
