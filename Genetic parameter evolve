@@ -1,5 +1,6 @@
 #Vaatii sklearn kirjaston, lataa tällä komennolla:
 #pip install sklearn-deap
+#Dokumentaatio täällä: https://github.com/rsteca/sklearn-deap
 
 
 
