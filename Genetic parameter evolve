@@ -10,32 +10,18 @@ from evolutionary_search import maximize
 
 
 #Param_grid määrittää avaruuden jonka yli evoluutioalgoritmi etsii parasta parametri yhdistelmää
-param_grid = {'emashort': np.linspace(1,30,30, dtype=int), 'emalong': np.linspace(1,50,50,dtype=int), 'rsibuy': np.linspace(1,100,100,dtype=int), 'rsisell': np.linspace(1,100,100,dtype=int), 'rsval': np.linspace(1,100,100,dtype=int)}
+
 args = {}
+param_grid = {'emashort': np.linspace(1,50,50, dtype=int), 'emalong': np.linspace(1,100,100,dtype=int), 'rsibuy': np.linspace(1,100,100,dtype=int), 'rsisell': np.linspace(1,100,100,dtype=int), 'rsval': np.linspace(1,100,100,dtype=int)}
 
-a, b, c, d, e= maximize(sim1_1.sim, param_grid, args, verbose=False)
-print (a)
-print (b)
-print (c)
-print (d)
-print (e)
+#Runs the evolution algorithm N times, saves best found parameters and resulting portfolio values to a txt file
+
+for i in range(1,20):
+    optimalparams, optimalresult, c, d, e= maximize(sim1_1.sim, param_grid, args, verbose=False)
+    print (optimalparams)
+    print (optimalresult)
+    file=open("optimal parameters.txt", "a")
+    file.write("%s|%s|%s\n" % (i,optimalparams, optimalresult))
+    file.close()
 
 
-#alla joitain evoluutioalgoritmin löytämiä parametriyhdistelmiä
-#{'emashort': 8, 'emalong': 20, 'rsibuy': 35, 'rsisell': 80, 'rsval': 9}
-#80000
-#{'emashort': 5, 'emalong': 12, 'rsibuy': 36, 'rsisell': 75, 'rsval': 8}
-#75488.45128835137
-#{'emashort': 2, 'emalong': 34, 'rsibuy': 60, 'rsisell': 48, 'rsval': 19}
-#79362.57784324359
-#{'emashort': 4, 'emalong': 30, 'rsibuy': 60, 'rsisell': 53, 'rsval': 25}
-#82517.40124177594
-#sim(4,30,60,53,25)
-#{'emashort': 2, 'emalong': 28, 'rsibuy': 67, 'rsisell': 53, 'rsval': 50}
-#87646.41072028043
-#{'emashort': 1, 'emalong': 95, 'rsibuy': 75, 'rsisell': 72, 'rsval': 10}
-#85696.18903438534
-#{'emashort': 3, 'emalong': 37, 'rsibuy': 62, 'rsisell': 45, 'rsval': 48}
-#69928.72606045149
-#{'emashort': 1, 'emalong': 22, 'rsibuy': 69, 'rsisell': 69, 'rsval': 10}
-#73018.733919889
